@@ -9,10 +9,6 @@
   --tipColor:     #fff;
   --legendColor:  #eee;
   --axisColor:    #999;
-  --contWidth:    1200px;   /*Container - Compare with .js file*/
-  --contHeight:    750px;   /*Container - Compare with .js file*/
-  --legendWidth:   300px;   /*legend (palette) - Compare with .js file*/
-  --legendHeight:  60px;    /*legend (palette) - Compare with .js file*/
 }
 
 * { margin: 0; padding: 0;}
@@ -28,8 +24,6 @@
 }
 
 .container {
-  width: var(--contWidth);
-  height: var(--contHeight);
   background-color: var(--contColor);
   flex-direction: column;
   padding: 20px 10px 10px 0px;
@@ -64,11 +58,9 @@
   position: relative;
   top: 40px;
   margin: auto;  
-  width: var(--legendWidth);
   background: var(--legendColor);
   border-radius: 8px;
-  padding: 10px;
-  height: var(--legendHeight);
+  padding-top: 10px;
 }
 
 /* .cell { stroke: #000; } */

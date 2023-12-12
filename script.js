@@ -12,6 +12,10 @@ const
 	hueRange = [240, 0],	// left & right values for color Hue (HSL colors: 0=Red, 120=Green, 240=Blue).
 	paletteHeight = 20,   // Height of the color palette.
   paletteWidth = 250,   // Width of the color palette. 
+  contWidth = 1200,   	//Container - Compare with .js file
+  contHeight = 750,   	//Container - Compare with .js file
+  legendWidth = 290,   	//legend (palette) - Compare with paletteWidth in .js file
+  legendHeight = paletteHeight + 2*paletteMargin,    //legend (palette) - Compare with paletteHeight in .js file
   legendLabel = "Temperature color code";
 
 // =====================
@@ -33,7 +37,7 @@ function getMonth(num) {
 // Create function to assign scaled HSL color
 // =====================
 function colorHSL(value, domain, range) {
-  const hue = range[0] + value * (range[1] - range[0]) / (domain[1] - domain[0]);
+  const hue = range[0] + (value - domain[0]) * (range[1] - range[0]) / (domain[1] - domain[0]);
   return 'hsl(' + hue + ', 100%, 50%)';
 }
 
@@ -41,7 +45,16 @@ function colorHSL(value, domain, range) {
 // Create color palette using SVG element
 // =====================
 let	colors = [];	// Array to store the colors of the palete (1 element per pixel):			
-const palette = d3.select('#palette');
+
+const	container = d3.select('#container')
+		.style('width', contWidth + 'px')
+		.style('height', contHeight + 'px');
+	legend = d3.select('#legend')	
+		.style('width', legendWidth + 'px')
+		.style('height', legendHeight + 'px');
+
+const palette = d3.select('#palette')
+  .attr('width', paletteWidth + 2*paletteMargin);
 
 for (i = 0; i <= paletteWidth; i++) { 
 	colors.push(colorHSL(i, [0, paletteWidth], hueRange));
