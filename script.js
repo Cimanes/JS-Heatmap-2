@@ -78,9 +78,8 @@ const tip = d3.select('#tooltip');
 // =====================
 // Retrieve data from file ==> dynamic code.
 // =====================
-fetch(dataFile)                    // Retrieve the remote file.
-  .then(file => file.json())       // Create a JSON object with the response.
-  .then(json => {
+d3.json(dataFile)               // Create a JSON object from the file
+  .then(json => {			          // Use the JSON object in the following procedures
     const baseTemp = json.baseTemperature;  // Variable to store base temperature.  
     const data = json.monthlyVariance;      // Array to store historic data.
     data.forEach(d => {
